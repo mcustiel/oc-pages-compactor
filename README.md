@@ -1,2 +1,2 @@
 # oc-pages-compactor
-OctoberCMS plugin that provides HTML code minification and embedded assets to pages.
+OctoberCMS plugin that provides HTML code minification and embedding of assets to pages.
