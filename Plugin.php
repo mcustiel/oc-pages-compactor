@@ -10,8 +10,8 @@ use Cms\Classes\Controller;
 use Mcustiel\CompactPages\Classes\Twig\Extensions\InlineAssets;
 use Mcustiel\CompactPages\Classes\Twig\TokenParsers\NativeOverwriteInlineStyle;
 use Mcustiel\CompactPages\Classes\Twig\TokenParsers\InlineScript;
-use Mcustiel\CompactPages\Classes\Twig\TokenParsers\NativeOverwriteInlineScripts;
 use Mcustiel\CompactPages\Classes\Twig\TokenParsers\NativeOverwriteInlineScript;
+use Cms\Classes\Page;
 
 /**
  * compactPages Plugin Information File
@@ -20,8 +20,8 @@ class Plugin extends PluginBase
 {
     public function boot()
     {
-        Event::listen('cms.page.beforeDisplay', function (Controller $controller, $url, $page) {
-            $controller->getTwig()->addExtension(App::make(InlineAssets::class));
+        Event::listen('cms.page.beforeDisplay', function (Controller $controller, $url, Page $page) {
+            $controller->getTwig()->addExtension(App::make(InlineAssets::class, [$controller]));
         });
 
         if (Config::get('mcustiel.compactpages::compactation.enabled')) {
@@ -50,38 +50,9 @@ class Plugin extends PluginBase
     }
 
     /**
-     * Registers any front-end components implemented in this plugin.
-     *
-     * @return array
+     * {@inheritDoc}
+     * @see \System\Classes\PluginBase::registerMarkupTags()
      */
-    public function registerComponents()
-    {
-        return []; // Remove this line to activate
-
-    }
-
-    /**
-     * Registers any back-end permissions used by this plugin.
-     *
-     * @return array
-     */
-    public function registerPermissions()
-    {
-        return []; // Remove this line to activate
-
-    }
-
-    /**
-     * Registers back-end navigation items for this plugin.
-     *
-     * @return array
-     */
-    public function registerNavigation()
-    {
-        return []; // Remove this line to activate
-
-    }
-
     public function registerMarkupTags()
     {
         $tokenParsers =  [
@@ -90,15 +61,16 @@ class Plugin extends PluginBase
                 App::make(InlineScript::class),
             ]
         ];
-        if (Config::get('mcustiel.compactpages::inline_assets.overwrite_native')) {
+        if (Config::get('mcustiel.compactpages::inline_assets.overwrite_native.styles')) {
             $tokenParsers[MarkupManager::EXTENSION_TOKEN_PARSER][] = App::make(
                 NativeOverwriteInlineStyle::class
             );
+        }
+        if (Config::get('mcustiel.compactpages::inline_assets.overwrite_native.scripts')) {
             $tokenParsers[MarkupManager::EXTENSION_TOKEN_PARSER][] = App::make(
                 NativeOverwriteInlineScript::class
             );
         }
         return $tokenParsers;
     }
-
 }
