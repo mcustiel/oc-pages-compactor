@@ -61,11 +61,10 @@ class InlineAssets extends Twig_Extension
         foreach ($this->controller->getAssetPaths()[$assetsType] as $path) {
             $relativePath = parse_url($path)['path'];
             $assetCode = file_get_contents(base_path($relativePath));
-            $response = Event::fire(
+            if (($response = Event::fire(
                 'mcustiel.compactpages.assetInlining',
                 [$relativePath, $assetCode, $assetsType]
-            );
-            if ($response) {
+            ))) {
                 $html .= $response;
             } else {
                 $html .= $assetsType == 'css' ? $this->fixCssPaths($relativePath, $assetCode) : $assetCode;

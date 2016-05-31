@@ -55,22 +55,11 @@ class Plugin extends PluginBase
      */
     public function registerMarkupTags()
     {
-        $tokenParsers =  [
+        return [
             MarkupManager::EXTENSION_TOKEN_PARSER => [
                 App::make(InlineStyle::class),
                 App::make(InlineScript::class),
             ]
         ];
-        if (Config::get('mcustiel.compactpages::inline_assets.overwrite_native.styles')) {
-            $tokenParsers[MarkupManager::EXTENSION_TOKEN_PARSER][] = App::make(
-                NativeOverwriteInlineStyle::class
-            );
-        }
-        if (Config::get('mcustiel.compactpages::inline_assets.overwrite_native.scripts')) {
-            $tokenParsers[MarkupManager::EXTENSION_TOKEN_PARSER][] = App::make(
-                NativeOverwriteInlineScript::class
-            );
-        }
-        return $tokenParsers;
     }
 }
