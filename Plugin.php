@@ -8,9 +8,7 @@ use System\Classes\MarkupManager;
 use Mcustiel\CompactPages\Classes\Twig\TokenParsers\InlineStyle;
 use Cms\Classes\Controller;
 use Mcustiel\CompactPages\Classes\Twig\Extensions\InlineAssets;
-use Mcustiel\CompactPages\Classes\Twig\TokenParsers\NativeOverwriteInlineStyle;
 use Mcustiel\CompactPages\Classes\Twig\TokenParsers\InlineScript;
-use Mcustiel\CompactPages\Classes\Twig\TokenParsers\NativeOverwriteInlineScript;
 use Cms\Classes\Page;
 
 /**
@@ -18,6 +16,10 @@ use Cms\Classes\Page;
  */
 class Plugin extends PluginBase
 {
+    /**
+     * {@inheritDoc}
+     * @see \System\Classes\PluginBase::boot()
+     */
     public function boot()
     {
         Event::listen('cms.page.beforeDisplay', function (Controller $controller, $url, Page $page) {

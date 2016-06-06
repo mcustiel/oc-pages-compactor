@@ -9,7 +9,6 @@ class PeeWeeHtmlCompactor implements HtmlCompactorInterface
     /**
      *
      * {@inheritdoc}
-     *
      * @see \Mcustiel\CompactPages\Classes\Services\HtmlCompactorInterface::compactHtml()
      */
     public function compactHtml($html)

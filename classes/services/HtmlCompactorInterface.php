@@ -6,8 +6,8 @@ interface HtmlCompactorInterface
     /**
      * Compresses the given HTML.
      *
-     * @param string $html
-     * @return string
+     * @param string $html The HTML to minify
+     * @return string The minified HTML
      */
     public function compactHtml($html);
 }
