@@ -3,7 +3,7 @@
     "repositories": [ 
         {
             "type": "vcs",
-            "url": "https://github.com/Musiksammler/phpwee-php-minifier"
+            "url": "https://github.com/mcustiel/phpwee-php-minifier"
         }
     ],
     "require": {
