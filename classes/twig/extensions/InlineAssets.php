@@ -38,9 +38,13 @@ class InlineAssets extends Twig_Extension
      */
     public function inlineStyles()
     {
-        return '<style type="text/css">' . PHP_EOL
-            . $this->assetsCode('css') . PHP_EOL
-            . '</style>' .  PHP_EOL;
+        $code = $this->assetsCode('css');
+        if ($code) {
+            return '<style type="text/css">' . PHP_EOL
+                . $code . PHP_EOL
+                . '</style>';
+        }
+        return $code;
     }
 
     /**
@@ -50,9 +54,13 @@ class InlineAssets extends Twig_Extension
      */
     public function inlineScripts()
     {
-        return '<script type="text/javascript">' . PHP_EOL
-            . $this->assetsCode('js') . PHP_EOL
-            . '</script>' .  PHP_EOL;
+        $code = $this->assetsCode('js');
+        if ($code) {
+            return '<script type="text/javascript">' . PHP_EOL
+                . $code . PHP_EOL
+                . '</script>';
+        }
+        return $code;
     }
 
     private function assetsCode($assetsType)
@@ -77,7 +85,7 @@ class InlineAssets extends Twig_Extension
     {
         $pathArray = explode('/', $relativePath);
         $callback = function ($matches) use ($pathArray) {
-            $replacement = '/';
+            $replacement = $matches[1] . '/';
             $amountOfDirectories = count($pathArray) - substr_count($matches[0], '../') - 1;
             for ($i = 1; $i < $amountOfDirectories; $i++) {
                 $replacement .= $pathArray[$i] . '/';
@@ -85,6 +93,6 @@ class InlineAssets extends Twig_Extension
             return $replacement;
         };
 
-        return preg_replace_callback('~(?:\.\./)+~', $callback, $assetCode);
+        return preg_replace_callback('~([^/])(?:\\.\\./)+~', $callback, $assetCode);
     }
 }

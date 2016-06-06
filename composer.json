@@ -3,11 +3,14 @@
     "repositories": [ 
         {
             "type": "vcs",
-            "url": "https://github.com/Musiksammler/phpwee-php-minifier"
+            "url": "https://github.com/mcustiel/phpwee-php-minifier"
         }
     ],
     "require": {
-        "searchturbine/phpwee-php-minifier": "*"
+        "searchturbine/phpwee-php-minifier": "*",
+    },
+    "require-dev": {
+        "mockery/mockery": "@stable"
     },
     "minimum-stability" : "dev",
     "prefer-stable" : true
