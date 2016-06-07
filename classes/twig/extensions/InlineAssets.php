@@ -63,12 +63,25 @@ class InlineAssets extends Twig_Extension
         return $code;
     }
 
+    private function getPath($path)
+    {
+        return parse_url($path)['path'];
+    }
+
+    private function convertToRealPath($relativePath)
+    {
+        if (strpos($relativePath, 'combine/') !== false) {
+            return url($relativePath);
+        }
+        return base_path($relativePath);
+    }
+
     private function assetsCode($assetsType)
     {
         $html = '';
         foreach ($this->controller->getAssetPaths()[$assetsType] as $path) {
-            $relativePath = parse_url($path)['path'];
-            $assetCode = file_get_contents(base_path($relativePath));
+            $relativePath = $this->getPath($path);
+            $assetCode = file_get_contents($this->convertToRealPath($relativePath));
             if (($response = Event::fire(
                 'mcustiel.compactpages.assetInlining',
                 [$relativePath, $assetCode, $assetsType]
