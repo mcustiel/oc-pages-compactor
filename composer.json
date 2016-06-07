@@ -7,7 +7,7 @@
         }
     ],
     "require": {
-        "searchturbine/phpwee-php-minifier": "*",
+        "searchturbine/phpwee-php-minifier": "*"
     },
     "require-dev": {
         "mockery/mockery": "@stable"
