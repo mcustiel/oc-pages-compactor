@@ -44,7 +44,7 @@ a {
 
 ### inlineScripts
 
-The behaviour of this tag is analog to that of inlineStyles, for javascript assets added with addJs.
+The behaviour of this tag is analog to that of `inlineStyles`, but for javascript assets added with addJs.
 
 ## Configuration
 
@@ -56,6 +56,8 @@ return [
     'compactation' => [
         'enabled' => false,
         'compactor' => '\\Mcustiel\\CompactPages\\Classes\\Services\\Implementation\\PeeWeeHtmlCompactor',
+        'minifyJs' => false,
+        'minifyCss' => false,
     ],
 ];
 ```
@@ -71,6 +73,6 @@ interface HtmlCompactorInterface
      * @param string $html
      * @return string
      */
-    public function compactHtml($html);
+    public function compactHtml($html, $minifyJs = false, $minifyCss = false);
 }
 ```

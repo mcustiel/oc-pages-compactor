@@ -22,16 +22,23 @@ class Plugin extends PluginBase
      */
     public function boot()
     {
-        Event::listen('cms.page.beforeDisplay', function (Controller $controller, $url, Page $page) {
-            $controller->getTwig()->addExtension(App::make(InlineAssets::class, [$controller]));
-        });
+        Event::listen(
+            'cms.page.beforeDisplay',
+            function (Controller $controller, $url, Page $page = null) {
+                $controller->getTwig()->addExtension(App::make(InlineAssets::class, [$controller]));
+            }
+        );
 
         if (Config::get('mcustiel.compactpages::compactation.enabled')) {
             Event::listen('cms.page.postprocess', function($controller, $url, $page, $dataHolder) {
                 $compactor = App::make(
                     Config::get('mcustiel.compactpages::compactation.compactor')
                 );
-                $dataHolder->content = $compactor->compactHtml($dataHolder->content);
+                $dataHolder->content = $compactor->compactHtml(
+                    $dataHolder->content,
+                    Config::get('mcustiel.compactpages::compactation.minifyJs'),
+                    Config::get('mcustiel.compactpages::compactation.minifyCss')
+                );
             });
         }
     }

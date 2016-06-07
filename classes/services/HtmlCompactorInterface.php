@@ -9,5 +9,5 @@ interface HtmlCompactorInterface
      * @param string $html The HTML to minify
      * @return string The minified HTML
      */
-    public function compactHtml($html);
+    public function compactHtml($html, $minifyJs = false, $minifyCss = false);
 }
