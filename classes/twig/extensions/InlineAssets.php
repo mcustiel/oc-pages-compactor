@@ -8,7 +8,6 @@ use Mcustiel\CompactPages\Classes\Twig\TokenParsers\InlineScript;
 use Mcustiel\CompactPages\Classes\Twig\TokenParsers\InlineStyle;
 use Illuminate\Support\Facades\Event;
 
-
 class InlineAssets extends Twig_Extension
 {
     /**
@@ -84,7 +83,8 @@ class InlineAssets extends Twig_Extension
             $assetCode = file_get_contents($this->convertToRealPath($relativePath));
             if (($response = Event::fire(
                 'mcustiel.compactpages.assetInlining',
-                [$relativePath, $assetCode, $assetsType]
+                [$relativePath, $assetCode, $assetsType],
+                true
             ))) {
                 $html .= $response;
             } else {
