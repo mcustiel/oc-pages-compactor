@@ -2,7 +2,7 @@
 namespace Mcustiel\CompactPages\Classes\Services\Implementation;
 
 use Mcustiel\CompactPages\Classes\Services\HtmlCompactorInterface;
-use PHPWee\HtmlMin\HtmlMin;
+use PHPWee\PHPWee;
 
 class PeeWeeHtmlCompactor implements HtmlCompactorInterface
 {
@@ -13,6 +13,6 @@ class PeeWeeHtmlCompactor implements HtmlCompactorInterface
      */
     public function compactHtml($html, $minifyJs = false, $minifyCss = false)
     {
-        return HtmlMin::minify($html, $minifyJs, $minifyCss);
+        return PHPWee::html($html, $minifyJs, $minifyCss);
     }
 }
