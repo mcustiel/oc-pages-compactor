@@ -55,14 +55,14 @@ Default configuration for the plugin is:
 return [
     'compactation' => [
         'enabled' => false,
-        'compactor' => '\\Mcustiel\\CompactPages\\Classes\\Services\\Implementation\\PhpWeeHtmlCompactor',
+        'compactor' => '\\Mcustiel\\InlineAssets\\Classes\\Services\\Implementation\\PhpWeeHtmlCompactor',
     ],
 ];
 ```
 
 To activate page minification, you need to overwrite the config as explained in [october's documentation](https://octobercms.com/docs/plugin/settings#file-configuration) and set 'enabled' to true. 
 
-If you want to add your own html minificator, you can specify it in the config. Your minificator must implement `\Mcustiel\CompactPages\Classes\Services\HtmlCompactorInterface`:
+If you want to add your own html minificator, you can specify it in the config. Your minificator must implement `\Mcustiel\InlineAssets\Classes\Services\HtmlCompactorInterface`:
 
 ```php
 interface HtmlCompactorInterface

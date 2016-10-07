@@ -1,9 +1,9 @@
 <?php
 
-namespace Mcustiel\CompactPages\Tests\Php\Unit\Classes\Twig\Extensions;
+namespace Mcustiel\InlineAssets\Tests\Php\Unit\Classes\Twig\Extensions;
 
 use Cms\Classes\Controller;
-use Mcustiel\CompactPages\Classes\Twig\Extensions\InlineAssets;
+use Mcustiel\InlineAssets\Classes\Twig\Extensions\InlineAssets;
 use Illuminate\Support\Facades\Event;
 
 /**
@@ -18,7 +18,7 @@ class InlineAssetsTest extends \PluginTestCase
     private $controller;
 
     /**
-     * @var \Mcustiel\CompactPages\Classes\Twig\Extensions\InlineAssets
+     * @var \Mcustiel\InlineAssets\Classes\Twig\Extensions\InlineAssets
      */
     private $extension;
 

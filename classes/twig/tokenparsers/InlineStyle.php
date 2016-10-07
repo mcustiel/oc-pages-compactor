@@ -1,10 +1,10 @@
 <?php
 
-namespace Mcustiel\CompactPages\Classes\Twig\TokenParsers;
+namespace Mcustiel\InlineAssets\Classes\Twig\TokenParsers;
 
 use Twig_TokenParser;
 use Twig_Token;
-use Mcustiel\CompactPages\Classes\Twig\Nodes\InlineStyle as InlineStyleNode;
+use Mcustiel\InlineAssets\Classes\Twig\Nodes\InlineStyle as InlineStyleNode;
 
 class InlineStyle extends Twig_TokenParser
 {

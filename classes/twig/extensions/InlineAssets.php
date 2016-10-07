@@ -1,6 +1,6 @@
 <?php
 
-namespace Mcustiel\CompactPages\Classes\Twig\Extensions;
+namespace Mcustiel\InlineAssets\Classes\Twig\Extensions;
 
 use Html;
 use Twig_Extension;

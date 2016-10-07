@@ -1,6 +1,6 @@
 <?php
 
-namespace Mcustiel\CompactPages\Classes\Services;
+namespace Mcustiel\InlineAssets\Classes\Services;
 
 interface HtmlCompactorInterface
 {

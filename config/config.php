@@ -3,6 +3,6 @@
 return [
     'compactation' => [
         'enabled'   => true,
-        'compactor' => '\\Mcustiel\\CompactPages\\Classes\\Services\\Implementation\\PhpWeeHtmlCompactor',
+        'compactor' => '\\Mcustiel\\InlineAssets\\Classes\\Services\\Implementation\\PhpWeeHtmlCompactor',
     ],
 ];

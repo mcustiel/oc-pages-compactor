@@ -1,6 +1,6 @@
 <?php
 
-namespace Mcustiel\CompactPages\Classes\Twig\Nodes;
+namespace Mcustiel\InlineAssets\Classes\Twig\Nodes;
 
 use Twig_Node;
 use Twig_Compiler;

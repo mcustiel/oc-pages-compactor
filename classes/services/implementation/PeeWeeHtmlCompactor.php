@@ -1,7 +1,7 @@
 <?php
-namespace Mcustiel\CompactPages\Classes\Services\Implementation;
+namespace Mcustiel\InlineAssets\Classes\Services\Implementation;
 
-use Mcustiel\CompactPages\Classes\Services\HtmlCompactorInterface;
+use Mcustiel\InlineAssets\Classes\Services\HtmlCompactorInterface;
 use PHPWee\PHPWee;
 
 class PeeWeeHtmlCompactor implements HtmlCompactorInterface
@@ -9,7 +9,7 @@ class PeeWeeHtmlCompactor implements HtmlCompactorInterface
     /**
      *
      * {@inheritdoc}
-     * @see \Mcustiel\CompactPages\Classes\Services\HtmlCompactorInterface::compactHtml()
+     * @see \Mcustiel\InlineAssets\Classes\Services\HtmlCompactorInterface::compactHtml()
      */
     public function compactHtml($html, $minifyJs = false, $minifyCss = false)
     {

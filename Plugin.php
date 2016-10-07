@@ -1,16 +1,16 @@
 <?php
 
-namespace Mcustiel\CompactPages;
+namespace Mcustiel\InlineAssets;
 
 use App;
 use Event;
 use Config;
 use System\Classes\PluginBase;
 use System\Classes\MarkupManager;
-use Mcustiel\CompactPages\Classes\Twig\TokenParsers\InlineStyle;
+use Mcustiel\InlineAssets\Classes\Twig\TokenParsers\InlineStyle;
 use Cms\Classes\Controller;
-use Mcustiel\CompactPages\Classes\Twig\Extensions\InlineAssets;
-use Mcustiel\CompactPages\Classes\Twig\TokenParsers\InlineScript;
+use Mcustiel\InlineAssets\Classes\Twig\Extensions\InlineAssets;
+use Mcustiel\InlineAssets\Classes\Twig\TokenParsers\InlineScript;
 use Cms\Classes\Page;
 
 /**
