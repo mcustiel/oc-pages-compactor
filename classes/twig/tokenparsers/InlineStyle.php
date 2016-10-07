@@ -1,4 +1,5 @@
 <?php
+
 namespace Mcustiel\CompactPages\Classes\Twig\TokenParsers;
 
 use Twig_TokenParser;

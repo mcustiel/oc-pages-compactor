@@ -1,4 +1,6 @@
-<?php namespace Mcustiel\CompactPages;
+<?php
+
+namespace Mcustiel\CompactPages;
 
 use App;
 use Event;
@@ -17,7 +19,8 @@ use Cms\Classes\Page;
 class Plugin extends PluginBase
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
+     *
      * @see \System\Classes\PluginBase::boot()
      */
     public function boot()
@@ -30,15 +33,11 @@ class Plugin extends PluginBase
         );
 
         if (Config::get('mcustiel.compactpages::compactation.enabled')) {
-            Event::listen('cms.page.postprocess', function($controller, $url, $page, $dataHolder) {
+            Event::listen('cms.page.postprocess', function ($controller, $url, $page, $dataHolder) {
                 $compactor = App::make(
                     Config::get('mcustiel.compactpages::compactation.compactor')
                 );
-                $dataHolder->content = $compactor->compactHtml(
-                    $dataHolder->content,
-                    Config::get('mcustiel.compactpages::compactation.minifyJs'),
-                    Config::get('mcustiel.compactpages::compactation.minifyCss')
-                );
+                $dataHolder->content = $compactor->compactHtml($dataHolder->content);
             });
         }
     }
@@ -54,12 +53,13 @@ class Plugin extends PluginBase
             'name'        => 'Compact Pages',
             'description' => 'Provides HTML compactation/minifaction and inline assets',
             'author'      => 'mcustiel',
-            'icon'        => 'icon-cogs'
+            'icon'        => 'icon-cogs',
         ];
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
+     *
      * @see \System\Classes\PluginBase::registerMarkupTags()
      */
     public function registerMarkupTags()
@@ -68,7 +68,7 @@ class Plugin extends PluginBase
             MarkupManager::EXTENSION_TOKEN_PARSER => [
                 App::make(InlineStyle::class),
                 App::make(InlineScript::class),
-            ]
+            ],
         ];
     }
 }

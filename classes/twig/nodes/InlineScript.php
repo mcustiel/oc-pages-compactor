@@ -1,4 +1,5 @@
 <?php
+
 namespace Mcustiel\CompactPages\Classes\Twig\Nodes;
 
 use Twig_Node;

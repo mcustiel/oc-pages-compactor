@@ -2,7 +2,7 @@
 
 return [
     'compactation' => [
-        'enabled'   => true,
+        'enabled'   => false,
         'compactor' => '\\Mcustiel\\CompactPages\\Classes\\Services\\Implementation\\PhpWeeHtmlCompactor',
     ],
 ];

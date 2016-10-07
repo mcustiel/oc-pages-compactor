@@ -1,4 +1,5 @@
 <?php
+
 namespace Mcustiel\CompactPages\Tests\Php\Unit\Classes\Twig\Extensions;
 
 use Cms\Classes\Controller;
@@ -88,7 +89,7 @@ class InlineAssetsTest extends \PluginTestCase
                     "a {\n"
                     . " background: url(../../anImage.png);\n"
                     . "}\n",
-                    'css'
+                    'css',
                 ]
             )
             ->andReturn('Modified the css');
@@ -106,8 +107,8 @@ class InlineAssetsTest extends \PluginTestCase
     public function shouldReplaceRelativePathsInsideCss()
     {
         $this->controller->expects($this->once())
-        ->method('getAssetPaths')
-        ->willReturn($this->getFixtureAssets());
+            ->method('getAssetPaths')
+            ->willReturn($this->getFixtureAssets());
         $this->assertEquals(
             '<style type="text/css">' . PHP_EOL
             . "a {\n"
@@ -132,7 +133,7 @@ class InlineAssetsTest extends \PluginTestCase
             ],
             'css' => [
                 '/plugins/mcustiel/compactpages/tests/php/fixtures/test.css',
-            ]
+            ],
         ];
     }
 }

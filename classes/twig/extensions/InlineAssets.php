@@ -1,12 +1,12 @@
 <?php
+
 namespace Mcustiel\CompactPages\Classes\Twig\Extensions;
 
 use Html;
 use Twig_Extension;
 use Cms\Classes\Controller;
-use Mcustiel\CompactPages\Classes\Twig\TokenParsers\InlineScript;
-use Mcustiel\CompactPages\Classes\Twig\TokenParsers\InlineStyle;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Request;
 
 class InlineAssets extends Twig_Extension
 {
@@ -79,8 +79,8 @@ class InlineAssets extends Twig_Extension
     {
         $html = '';
         foreach ($this->controller->getAssetPaths()[$assetsType] as $path) {
-            $relativePath = $this->getPath($path);
-            $assetCode = file_get_contents($this->convertToRealPath($relativePath));
+            $relativePath = '';
+            $assetCode = $this->getAssetCode($path, $relativePath);
             if (($response = Event::fire(
                 'mcustiel.compactpages.assetInlining',
                 [$relativePath, $assetCode, $assetsType],
@@ -94,13 +94,22 @@ class InlineAssets extends Twig_Extension
         return $html;
     }
 
+    private function getAssetCode($path, &$relativePath) {
+        if (strpos($path, Request::root()) !== 0) {
+            $relativePath = '';
+            return file_get_contents($path);
+        }
+        $relativePath = $this->getPath($path);
+        return file_get_contents($this->convertToRealPath($relativePath));
+    }
+
     private function fixCssPaths($relativePath, $assetCode)
     {
         $pathArray = explode('/', $relativePath);
         $callback = function ($matches) use ($pathArray) {
             $replacement = $matches[1] . '/';
             $amountOfDirectories = count($pathArray) - substr_count($matches[0], '../') - 1;
-            for ($i = 1; $i < $amountOfDirectories; $i++) {
+            for ($i = 1; $i < $amountOfDirectories; ++$i) {
                 $replacement .= $pathArray[$i] . '/';
             }
             return $replacement;
