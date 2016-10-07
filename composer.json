@@ -3,14 +3,8 @@
     "type": "october-plugin",
     "description": "Provides inlineStyles and inlineScripts that embed the assets in the HTML",
     "keywords": ["october", "cms", "inline", "assets", "scripts", "styles"],
-    "repositories": [ 
-        {
-            "type": "vcs",
-            "url": "https://github.com/mcustiel/phpwee-php-minifier"
-        }
-    ],
+    "minimum-stability" : "dev",
     "require": {
-        "searchturbine/phpwee-php-minifier": "*"
-    },
-    "minimum-stability" : "dev"
+        "php": ">=5.5.9"
+    }
 }

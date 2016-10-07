@@ -31,15 +31,6 @@ class Plugin extends PluginBase
                 $controller->getTwig()->addExtension(App::make(InlineAssets::class, [$controller]));
             }
         );
-
-        if (Config::get('mcustiel.compactpages::compactation.enabled')) {
-            Event::listen('cms.page.postprocess', function ($controller, $url, $page, $dataHolder) {
-                $compactor = App::make(
-                    Config::get('mcustiel.compactpages::compactation.compactor')
-                );
-                $dataHolder->content = $compactor->compactHtml($dataHolder->content);
-            });
-        }
     }
 
     /**
@@ -50,8 +41,8 @@ class Plugin extends PluginBase
     public function pluginDetails()
     {
         return [
-            'name'        => 'Compact Pages',
-            'description' => 'Provides HTML compactation/minifaction and inline assets',
+            'name'        => 'Inline assets',
+            'description' => 'Provides inline assets embedding',
             'author'      => 'mcustiel',
             'icon'        => 'icon-cogs',
         ];
