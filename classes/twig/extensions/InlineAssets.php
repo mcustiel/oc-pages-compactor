@@ -82,7 +82,7 @@ class InlineAssets extends Twig_Extension
             $relativePath = '';
             $assetCode = $this->getAssetCode($path, $relativePath);
             if (($response = Event::fire(
-                'mcustiel.compactpages.assetInlining',
+                'mcustiel.inlineassets.assetInlining',
                 [$relativePath, $assetCode, $assetsType],
                 true
             ))) {
